@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  google-reach-plan-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: google-reach-plan-service
+    ports:
+      - "8000:8000"
+    environment:
+      # Google Ads API Configuration
+      - GOOGLE_ADS_DEVELOPER_TOKEN=${GOOGLE_ADS_DEVELOPER_TOKEN:-}
+      - GOOGLE_ADS_CLIENT_ID=${GOOGLE_ADS_CLIENT_ID:-}
+      - GOOGLE_ADS_CLIENT_SECRET=${GOOGLE_ADS_CLIENT_SECRET:-}
+      - GOOGLE_ADS_REFRESH_TOKEN=${GOOGLE_ADS_REFRESH_TOKEN:-}
+      - GOOGLE_ADS_LOGIN_CUSTOMER_ID=${GOOGLE_ADS_LOGIN_CUSTOMER_ID:-}
+      # Application Configuration
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    env_file:
+      - .env
+    volumes:
+      # Mount for development (optional - remove in production)
+      - ./app:/app/app:ro
+    networks:
+      - google-ads-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health', timeout=10)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  google-ads-network:
+    driver: bridge
+    name: google-ads-network
+
+# Example of how other services can connect to this service
+# Uncomment and modify as needed for your use case
+#
+# services:
+#   another-service:
+#     image: your-other-service:latest
+#     depends_on:
+#       - google-reach-plan-service
+#     networks:
+#       - google-ads-network
+#     environment:
+#       - GOOGLE_REACH_PLAN_SERVICE_URL=http://google-reach-plan-service:8000
