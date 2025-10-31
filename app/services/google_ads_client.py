@@ -88,7 +88,7 @@ class GoogleAdsService:
             
             # Format the response
             products = []
-            for product in response.plannable_products:
+            for product in response.product_metadata:
                 products.append({
                     "name": product.plannable_product_name,
                     "code": product.plannable_product_code
