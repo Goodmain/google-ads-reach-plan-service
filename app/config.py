@@ -1,16 +1,15 @@
 from pydantic_settings import BaseSettings
-from typing import Optional
 import logging
 
 
 class Settings(BaseSettings):
     # Google Ads API Configuration
-    google_ads_developer_token: Optional[str] = None
-    google_ads_client_id: Optional[str] = None
-    google_ads_client_secret: Optional[str] = None
-    google_ads_refresh_token: Optional[str] = None
-    google_ads_customer_id: Optional[str] = None
-    google_ads_login_customer_id: Optional[str] = None
+    google_ads_developer_token: str | None = None
+    google_ads_client_id: str | None = None
+    google_ads_client_secret: str | None = None
+    google_ads_refresh_token: str | None = None
+    google_ads_customer_id: str | None = None
+    google_ads_login_customer_id: str | None = None
     
     # API Configuration
     api_host: str = "0.0.0.0"

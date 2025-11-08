@@ -1,6 +1,4 @@
 from pydantic import BaseModel
-from typing import List, Optional
-from datetime import date
 
 
 class PlannableProduct(BaseModel):
@@ -9,7 +7,7 @@ class PlannableProduct(BaseModel):
 
 
 class PlannableProductsResponse(BaseModel):
-    products: List[PlannableProduct]
+    products: list[PlannableProduct]
     location_id: str
     total_count: int
 
@@ -20,7 +18,7 @@ class Customer(BaseModel):
 
 
 class CustomersResponse(BaseModel):
-    customers: List[Customer]
+    customers: list[Customer]
     customer_id: str
     total_count: int
 
@@ -48,8 +46,8 @@ class ReachCurvePoint(BaseModel):
 
 
 class ReachForecast(BaseModel):
-    reach_curve: List[ReachCurvePoint]
-    planned_products: List[PlannedProduct]
+    reach_curve: list[ReachCurvePoint]
+    planned_products: list[PlannedProduct]
     currency_code: str
     customer_id: str
 

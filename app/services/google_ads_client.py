@@ -298,10 +298,10 @@ class GoogleAdsService:
                             error_message = ex.failure.errors[0].message
                         else:
                             error_message = str(ex)
-                        raise Exception(f"Google Ads API error: {error_message}")
+                        raise Exception(f"Google Ads API error: {error_message}") from ex
                     else:
                         logger.error(f"Error generating reach forecast: {str(ex)}")
-                        raise Exception(f"Error generating reach forecast: {str(ex)}")
+                        raise Exception(f"Error generating reach forecast: {str(ex)}") from ex
         
         # This should never be reached due to the loop structure, but just in case
         raise Exception("Max retry attempts exceeded for reach forecast generation")

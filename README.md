@@ -217,3 +217,10 @@ The service logs important events. Check the console output for detailed error m
 ## License
 
 This project is for educational and development purposes. Please ensure compliance with Google Ads API terms of service.
+
+## Linting
+
+- Run lint: `ruff check .`
+- Auto-fix simple issues: `ruff check . --fix`
+- Config is in `pyproject.toml` under `[tool.ruff]`.
+- Default rules selected: `E`, `F`, `I`, `UP`, `B`; `E501` is ignored and line-length is `100`.

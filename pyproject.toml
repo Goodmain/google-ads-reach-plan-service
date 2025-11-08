@@ -1,0 +1,24 @@
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+exclude = [
+  ".venv",
+  "build",
+  "dist",
+]
+
+[tool.ruff.lint]
+# Core rule selection: errors, imports, upgrades, bugbear
+select = ["E", "F", "I", "UP", "B"]
+extend-ignore = [
+  "E501",  # line too long
+  "E402",  # module import not at top-level (sys.path setup in tests)
+  "I001",  # import order (allowed in test setup)
+  "B904",  # raise from inside except (keep current error handling)
+]
+
+[tool.ruff.format]
+# Enable formatting if ever used (`ruff format`)
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"

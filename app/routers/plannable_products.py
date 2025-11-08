@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException, Query
-from typing import List
 import logging
 
 from app.services.google_ads_client import google_ads_service
@@ -11,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/plannable-products",
-    response_model=List[PlannableProduct],
+    response_model=list[PlannableProduct],
     responses={
         400: {"model": ErrorResponse, "description": "Bad Request"},
         500: {"model": ErrorResponse, "description": "Internal Server Error"}

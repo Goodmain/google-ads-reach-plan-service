@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Query, HTTPException
-from app.models.responses import ReachForecastResponse, ReachForecastRequest, ReachForecast, ErrorResponse
+from app.models.responses import ReachForecastResponse, ReachForecastRequest, ReachForecast
 from app.services.google_ads_client import google_ads_service
 import logging
 

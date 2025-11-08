@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from app.routers import plannable_products, customers, reach_forecast
-from app.config import settings
 
 app = FastAPI(
     title="Google Ads Reach Plan Service",
